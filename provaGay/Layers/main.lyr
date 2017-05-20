@@ -1,0 +1,91 @@
+<ObjectLayer>
+ <Layer Name="Main" FullName="Main" GUID="{C261A727-CA0C-5152-B64B-857F3445DC2D}" Hidden="0" Frozen="0" Expanded="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1">
+  <LayerObjects>
+   <Object Type="Entity" Layer="Main" LayerGUID="{C261A727-CA0C-5152-B64B-857F3445DC2D}" Id="{C8CD6F75-95D5-725A-0338-E8BDDBF7DEC2}" Name="FlowgraphEntity1" Pos="513.93182,112.81301,96.312698" FloorNumber="-1" Rotate="1,0,0,0" ColorRGB="65535" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="FlowgraphEntity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component typeId="{17E5EBA7-57E4-4662-A1C2-1F41DE946CDA}"/>
+    </Components>
+    <FlowGraph Description="" Group="worlClocl_FG" enabled="1" MultiPlayer="ClientServer">
+     <Nodes>
+      <Node Id="2" Class="Time:TimeOfDay" pos="-90,0,0" flags="0">
+       <Inputs Time="0" ForceUpdate="0" Speed="1"/>
+      </Node>
+      <Node Id="3" Class="Time:Timer" pos="-240,-10,0" flags="0">
+       <Inputs period="0" min="0" max="0" paused="0"/>
+      </Node>
+      <Node Id="7" Class="Debug:DisplayMessage" pos="1560,-30,0" flags="0">
+       <Inputs entityId="0" message="" DisplayTime="0" posX="50" posY="50" fontSize="2" clr_Color="1,1,1" centered="0"/>
+      </Node>
+      <Node Id="10" Class="Math:Floor" pos="160,50,0" flags="0">
+       <Inputs A="0"/>
+      </Node>
+      <Node Id="11" Class="Math:Calculate" pos="-80,250,0" flags="0">
+       <Inputs Op="1" A="0" B="0"/>
+      </Node>
+      <Node Id="12" Class="Math:Calculate" pos="160,270,0" flags="0">
+       <Inputs Op="2" A="0" B="60"/>
+      </Node>
+      <Node Id="13" Class="Math:Round" pos="350,280,0" flags="0">
+       <Inputs In="0"/>
+      </Node>
+      <Node Id="15" Class="String:Concat" pos="380,70,0" flags="0">
+       <Inputs String1="" String2=":"/>
+      </Node>
+      <Node Id="16" Class="String:Concat" pos="1330,110,0" flags="0">
+       <Inputs String1="" String2=""/>
+      </Node>
+      <Node Id="19" Class="Math:InRange" pos="620,270,0" flags="0">
+       <Inputs In="0" Min="0" Max="9"/>
+      </Node>
+      <Node Id="20" Class="Math:InRange" pos="620,370,0" flags="0">
+       <Inputs In="0" Min="10" Max="59"/>
+      </Node>
+      <Node Id="22" Class="Logic:Gate" pos="790,280,0" flags="0">
+       <Inputs Closed="0"/>
+      </Node>
+      <Node Id="23" Class="Logic:Gate" pos="790,390,0" flags="0">
+       <Inputs Closed="0"/>
+      </Node>
+      <Node Id="25" Class="String:Concat" pos="1010,320,0" flags="0">
+       <Inputs String1="" String2=""/>
+      </Node>
+      <Node Id="28" Class="Logic:Any" pos="1190,260,0" flags="0">
+       <Inputs />
+      </Node>
+     </Nodes>
+     <Edges>
+      <Edge nodeIn="10" nodeOut="2" portIn="A" portOut="CurTime" enabled="1"/>
+      <Edge nodeIn="11" nodeOut="2" portIn="A" portOut="CurTime" enabled="1"/>
+      <Edge nodeIn="11" nodeOut="2" portIn="DoCalc" portOut="CurTime" enabled="1"/>
+      <Edge nodeIn="2" nodeOut="3" portIn="Get" portOut="out" enabled="1"/>
+      <Edge nodeIn="11" nodeOut="10" portIn="B" portOut="out" enabled="1"/>
+      <Edge nodeIn="15" nodeOut="10" portIn="Set" portOut="out" enabled="1"/>
+      <Edge nodeIn="15" nodeOut="10" portIn="String1" portOut="out" enabled="1"/>
+      <Edge nodeIn="12" nodeOut="11" portIn="A" portOut="out" enabled="1"/>
+      <Edge nodeIn="12" nodeOut="11" portIn="DoCalc" portOut="out" enabled="1"/>
+      <Edge nodeIn="13" nodeOut="12" portIn="In" portOut="out" enabled="1"/>
+      <Edge nodeIn="19" nodeOut="13" portIn="In" portOut="outRounded" enabled="1"/>
+      <Edge nodeIn="20" nodeOut="13" portIn="In" portOut="outRounded" enabled="1"/>
+      <Edge nodeIn="22" nodeOut="13" portIn="In" portOut="outRounded" enabled="1"/>
+      <Edge nodeIn="23" nodeOut="13" portIn="In" portOut="outRounded" enabled="1"/>
+      <Edge nodeIn="25" nodeOut="13" portIn="String2" portOut="outRounded" enabled="1"/>
+      <Edge nodeIn="16" nodeOut="15" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="16" nodeOut="15" portIn="String1" portOut="Out" enabled="1"/>
+      <Edge nodeIn="7" nodeOut="16" portIn="Show" portOut="Out" enabled="1"/>
+      <Edge nodeIn="7" nodeOut="16" portIn="message" portOut="Out" enabled="1"/>
+      <Edge nodeIn="22" nodeOut="19" portIn="Close" portOut="false" enabled="1"/>
+      <Edge nodeIn="22" nodeOut="19" portIn="Open" portOut="true" enabled="1"/>
+      <Edge nodeIn="23" nodeOut="20" portIn="Close" portOut="false" enabled="1"/>
+      <Edge nodeIn="23" nodeOut="20" portIn="Open" portOut="true" enabled="1"/>
+      <Edge nodeIn="25" nodeOut="22" portIn="Set" portOut="Out" enabled="1"/>
+      <Edge nodeIn="28" nodeOut="23" portIn="in2" portOut="Out" enabled="1"/>
+      <Edge nodeIn="28" nodeOut="25" portIn="in1" portOut="Out" enabled="1"/>
+      <Edge nodeIn="16" nodeOut="28" portIn="String2" portOut="out" enabled="1"/>
+     </Edges>
+     <GraphTokens />
+    </FlowGraph>
+   </Object>
+  </LayerObjects>
+ </Layer>
+</ObjectLayer>
